@@ -10,7 +10,7 @@ import { VerificationJWT } from '../../middleware/auth/VerificationJWT';
 import { Validator } from '../../middleware/validator/Validator';
 import { BannerStore } from '../../entity/BannerStore';
 import { Store } from '../../entity/Store';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 
 
@@ -109,7 +109,6 @@ export class BannerStoreController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,

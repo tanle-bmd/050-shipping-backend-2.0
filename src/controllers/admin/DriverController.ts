@@ -12,7 +12,7 @@ import { DriverUpdate } from '../../entity-request/DriverUpdate';
 import { OrderFood } from '../../entity/OrderFood';
 import { OrderDelivery } from '../../entity/OrderDelivery';
 import { OrderTransport } from '../../entity/OrderTransport';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 import { getFromToDate } from '../../util/helper';
 
@@ -316,11 +316,11 @@ export class DriverController {
 
     // =====================UPLOAD AVATAR=====================
     @Post('/avatar/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,
-        @HeaderParams("token") token: string) {
+        @HeaderParams("token") token: string
+    ) {
         file.path = file.path.replace(config.UPLOAD_DIR, "");
         return file
     }

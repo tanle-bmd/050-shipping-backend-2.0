@@ -11,7 +11,7 @@ import { Validator } from '../../middleware/validator/Validator';
 import { Store } from '../../entity/Store';
 import JWT, { AuthType } from '../../middleware/auth/strategy/JWT';
 import { validatePassword, hashPassword } from '../../util/passwordHelper';
-import { MulterOptions, MultipartFile } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 
 
@@ -121,11 +121,11 @@ export class StoreController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,
-        @HeaderParams("token") token: string) {
+        @HeaderParams("token") token: string
+    ) {
         file.path = file.path.replace(config.UPLOAD_DIR, "");
         return file
     }

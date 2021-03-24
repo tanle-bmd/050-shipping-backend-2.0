@@ -9,10 +9,9 @@ import { Staff } from '../../entity/Staff';
 import { StaffService } from '../../services/StaffService';
 import JWT, { AuthType } from '../../middleware/auth/strategy/JWT';
 import { hashPassword } from '../../util/passwordHelper';
-import { Raw } from 'typeorm';
 import { Role } from '../../entity/Role';
 import { AdminUpdate } from '../../entity-request/AdminUpdate';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 
 @Controller("/admin/staff")
@@ -258,7 +257,6 @@ export class StaffController {
 
     // =====================UPLOAD AVATAR=====================
     @Post('/avatar/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('avatar') file: Express.Multer.File,

@@ -11,7 +11,7 @@ import { Customer } from '../../entity/Customer';
 import { CustomerService } from '../../services/CustomerService';
 import JWT, { AuthType } from '../../middleware/auth/strategy/JWT';
 import { CustomerInsert } from '../../entity-request/CustomerInsert';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 import { CustomerUpdate } from '../../entity-request/CustomerUpdate';
 import { getCurrentTimeInt, randomString, isNumberPhoneVN } from '../../util/helper';
@@ -274,7 +274,6 @@ export class CustomerController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,

@@ -5,7 +5,7 @@ import Joi from '@hapi/joi';
 import { VerificationJWT } from '../../middleware/auth/VerificationJWT';
 import { Validator } from '../../middleware/validator/Validator';
 import { Food } from '../../entity/Food';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 import { FoodService } from '../../services/FoodService';
 
@@ -83,7 +83,6 @@ export class FoodController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,

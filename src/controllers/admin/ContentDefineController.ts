@@ -1,7 +1,7 @@
 import { Controller, Post, UseAuth, Res, Response, HeaderParams, BodyParams, Get, PathParams, Req, Request } from '@tsed/common';
 import { Docs } from '@tsed/swagger';
 import Joi from '@hapi/joi';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 
 import { VerificationJWT } from '../../middleware/auth/VerificationJWT';
 import { Validator } from '../../middleware/validator/Validator';
@@ -92,7 +92,6 @@ export class ContentDefineController {
 
     @Post('/image/upload')
     @UseAuth(VerificationJWT)
-    @MulterOptions({})
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,
         @HeaderParams("token") token: string) {

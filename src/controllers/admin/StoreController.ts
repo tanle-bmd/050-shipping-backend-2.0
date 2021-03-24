@@ -7,7 +7,7 @@ import { Like, Raw } from 'typeorm';
 import { VerificationJWT } from '../../middleware/auth/VerificationJWT';
 import { Validator } from '../../middleware/validator/Validator';
 import { Store, StoreType } from '../../entity/Store';
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import config from '../../../config';
 import { hashPassword } from '../../util/passwordHelper';
 import { RequestFoodService } from '../../services/RequestFoodService';
@@ -208,7 +208,6 @@ export class StoreController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: Express.Multer.File,

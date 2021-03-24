@@ -1,5 +1,5 @@
 // IMPORT LIBRARY
-import { MultipartFile, MulterOptions } from '@tsed/multipartfiles';
+import { MultipartFile } from '@tsed/multipartfiles';
 import { Controller, Post, UseAuth, Req, Request, Res, Response, HeaderParams, BodyParams, Get, PathParams, QueryParams } from '@tsed/common';
 import { Docs } from '@tsed/swagger';
 import Joi from '@hapi/joi';
@@ -116,11 +116,10 @@ export class BannerController {
 
     // =====================UPLOAD IMAGE=====================
     @Post('/image/upload')
-    @MulterOptions({})
     @UseAuth(VerificationJWT)
     uploadFile(
         @MultipartFile('image') file: any,
-        @HeaderParams('token') token: string
+        @HeaderParams('token') token: Express.Multer.File,
     ) {
         file.path = file.path.replace(config.UPLOAD_DIR, '');
         return file;
