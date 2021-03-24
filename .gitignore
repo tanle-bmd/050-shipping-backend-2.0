@@ -1,0 +1,8 @@
+node_modules
+.env
+.env.production
+package-lock.json
+yarn.lock
+log
+uploads
+dist
