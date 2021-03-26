@@ -110,7 +110,7 @@ export class StaffController {
         @Req() req: Request,
         @Res() res: Response
     ) {
-        let where = `staff.name  LIKE '%${search}%'`
+        let where = `staff.name LIKE '%${search}%' `
 
         if (req.staff.area) areaId = req.staff.area.id
         if (areaId) {

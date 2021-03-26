@@ -31,7 +31,7 @@ git commit -m 'deploy'
 echo '====================================================================================='
 echo '==================================...PUSHING GIT...=================================='
 echo '====================================================================================='
-git push -f https://develop@shipping.bmd.com.vn/plesk-git/shipping-backend.git master
+git push -f https://develop@050shipping.bmdapp.store/plesk-git/050shipping-backend.git master
 cd -
 
 rm -rf deploy

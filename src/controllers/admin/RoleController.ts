@@ -10,6 +10,7 @@ import { Role } from '../../entity/Role';
 @Controller("/admin/role")
 @Docs("docs_admin")
 export class RoleController {
+
     // =====================GET LIST=====================
     @Get('')
     @UseAuth(VerificationJWT)
@@ -25,16 +26,11 @@ export class RoleController {
         @Req() req: Request,
         @Res() res: Response
     ) {
-        const where = {
-            name: Like(`%${search}%`),
-        }
-
-        let [role, total] = await Role.findAndCount({
-            skip: (page - 1) * limit,
-            take: limit,
-            where,
-            order: { id: "DESC" },
-        })
+        let where = `1`
+        let [role, total] = await Role.createQueryBuilder('role')
+            .where(where)
+            .orderBy('role.id', 'DESC')
+            .getManyAndCount()
 
         return res.sendOK({ data: role, total }, "Success")
     }
